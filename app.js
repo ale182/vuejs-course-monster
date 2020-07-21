@@ -1,15 +1,10 @@
 new Vue({
-    el:'#app',
-    data:{
-
+    el: '#app',
+    data: {
+        playerLife: 100,
+        monsterLife: 100
     },
-    computed:{
-
-    },
-    methods:{
-
-    },
-    watch:{
-
-    }
+    computed: {},
+    methods: {},
+    watch: {}
 })
