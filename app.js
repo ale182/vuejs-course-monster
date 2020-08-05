@@ -25,7 +25,7 @@ new Vue({
             const hurt = this.getRandom(min + plus , max + plus)
             // esta usando o max para que o valor nao fique negativo
             // chega no maximo em 0
-            this[prop] = Math.max(this.playerLife - hurt , 0)
+            this[prop] = Math.max(this[prop] - hurt , 0)
         },
         getRandom(min,max){
             const value = Math.random() * (max - min) + min
