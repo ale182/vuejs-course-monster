@@ -1,33 +1,42 @@
 new Vue({
     el: '#app',
     data: {
-        running:false,
+        running: false,
         playerLife: 100,
         monsterLife: 100
     },
     computed: {
-        hasResult(){
+        hasResult() {
             return this.playerLife == 0 || this.monsterLife == 0
         }
     },
     methods: {
-        startGame(){
+        startGame() {
             this.running = true
             this.playerLife = 100
             this.monsterLife = 100
         },
-        attack(especial){
+        attack(especial) {
             this.hurt('monsterLife', 5, 10, especial)
             this.hurt('playerLife', 7, 12, false)
         },
-        hurt(prop, min, max, especial){
+        hurt(prop, min, max, especial) {
             const plus = especial ? 5 : 0
-            const hurt = this.getRandom(min + plus , max + plus)
+            const hurt = this.getRandom(min + plus, max + plus)
             // esta usando o max para que o valor nao fique negativo
             // chega no maximo em 0
-            this[prop] = Math.max(this[prop] - hurt , 0)
+            this[prop] = Math.max(this[prop] - hurt, 0)
         },
-        getRandom(min,max){
+        healAndHurt(){
+            this.heal(10,15)
+            this.hurt('playerLife', 7, 12, false)
+        },
+        heal(min, max) {
+            const heal = this.getRandom(min, max)
+            // usa o min, para nao passar de 100
+            this.playerLife = Math.min(this.playerLife + heal, 100)
+        },
+        getRandom(min, max) {
             const value = Math.random() * (max - min) + min
             return Math.round(value)
         }
